@@ -1,0 +1,207 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,amsthm}  % assumes amsmath package installed
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage[numbered]{mcode}
+\usepackage{float}
+\usepackage{tikz}
+    \usetikzlibrary{shapes,arrows}
+    \usetikzlibrary{arrows,calc,positioning}
+
+    \tikzset{
+        block/.style = {draw, rectangle,
+            minimum height=1cm,
+            minimum width=1.5cm},
+        input/.style = {coordinate,node distance=1cm},
+        output/.style = {coordinate,node distance=4cm},
+        arrow/.style={draw, -latex,node distance=2cm},
+        pinstyle/.style = {pin edge={latex-, black,node distance=2cm}},
+        sum/.style = {draw, circle, node distance=1cm},
+    }
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{problem}[2][Problem]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+\newenvironment{solution}
+    {\textit{Solution:}}
+    {}
+
+\renewcommand{\qed}{\quad\qedsymbol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\large\textbf{Tutorial 1: Series and Convergence Tests for Series} \\
+\normalsize  MATH 262\\
+September 13-17, 2021\\
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Evaluate the limit (if possible):
+\begin{align*}
+    \  a) \; {a_{n}} &= \frac{5-2n}{3n-7} \; \; {\tiny  (Section \; 9.1, Q14)}\\
+    \  b) \; {a_{n}} &= \frac{e^{n} - e^{-n}}{e^{n}+e^{-n}} \; \; {\tiny  (Section \; 9.1, Q19)}\\
+    \  c) \; {a_{n}} &= \frac{n}{ln(n+1)} \; \; {\tiny  (Section \; 9.1, Q22)}
+ \end{align*}
+\end{problem}
+\begin{solution}\\
+a) Divide the numerator and denominator of the expression for an by the highest
+power of n in the denominator, that is, by n.
+\\
+$\lim_{n\to\infty}  \frac{5-2n}{3n-7} = \lim_{n\to\infty} \frac{\frac{5}{n} - \frac{2n}{n}}{\frac{3n}{n} - \frac{7}{n}} = \frac{0-2}{3-0} = -\frac{2}{3} $
+\\
+\\
+b) Divide numerator and denominator by $e^{n}$.
+\\
+$\lim_{n\to\infty}  \frac{e^{n} - e^{-n}}{e^{n}+e^{-n}} = \lim_{n\to\infty} \frac{\frac{e^{n}}{n}-\frac{e^{-n}}{n}}{\frac{e^{n}}{n}+\frac{e^{-n}}{n}} 
+=\lim_{n\to\infty}\frac{1-e^{-2n}}{1+e^{-2n}}(1) =\lim_{n\to\infty}\frac{1-e^{-2n}}{1+e^{-2n}}(\frac{1-e^{-2n}}{1-e^{-2n}})=1
+$
+\\
+\\
+c) Note: Cannot apply L'Hôpital's rule to a sequence.  WIll need to find associated function f(x) with real variables, such as  $f(x) = \frac{x}{ln(x+1)} $
+\\
+$
+lim_{x\to\infty}\frac{x}{ln(x+1)}
+=^{H.R} \lim_{x\to\infty} \frac{1}{\frac{1}{x+1}} 
+= \lim_{x\to\infty} (x+1) = \infty + 1 = \infty
+\\
+$
+Therefore, for the given sequence, limit does not exist.
+\\
+\end{solution} 
+\noindent\rule{7in}{2.8pt}
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{2}
+State if infinite series converges or diverges.  If sum converges, find the sum.
+
+\begin{align*}
+a)\sum\limits_{n=5}^\infty \frac{1}{(2+\pi)^{2n}}  \;\tiny (Section\; 9.2, Q3)
+\end{align*}
+\end{problem}
+\begin{solution}
+\\a) Note: This is a geometric series: \sum_{n=5}^\infty r^n, where \; r = 1/(2+\pi)^2
+
+\\$
+\sum\limits_{n=5}^\infty \frac{1}{(2+\pi)^{2n}} 
+$
+$
+= {(2+\pi)^{-10}} + \frac{1}{(2+\pi)^{12}} + \frac{1}{(2+\pi)^{14}} + ...$\\$
+= (\frac{1}{(2+\pi)^{10}}) (1 + \frac{1}{(2+\pi)^2} + \frac{1}{(2+\pi)^4} + ...)\\
+=\frac{1}{(2+\pi)^{10}} \cdot \frac{1}{1-\frac{1}{(2+\pi)^2}}\\
+= \frac{1}{(2+\pi)^8 [(2+\pi)^2 -1]}
+$
+\\
+\end{solution} 
+\noindent\rule{7in}{2.8pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\
+\begin{problem}{3}
+When dropped, an elastic ball bounces back up to a height
+three-quarters of that from which it fell. If the ball is dropped
+from a height of 2 m and allowed to bounce up and down
+indefinitely, what is the total distance it travels before coming
+to rest? ($Section$ 9.2, Q21)
+\\Hint: Think about total distance travelled in up and down direction.
+\\
+\end{problem}
+\begin{solution}
+\\
+total distance travelled = $2 + 2(\frac{3}{4}) +  2(\frac{3}{4}) + 2(\frac{3}{4})(\frac{3}{4}) + 2(\frac{3}{4})(\frac{3}{4}) + 2(\frac{3}{4})(\frac{3}{4})(\frac{3}{4}) + ...$
+\\$=2+2(\frac{3}{4}) + 2(\frac{3}{4})^2 + 2(\frac{3}{4})^3 + ...$
+\\$=2+2(3/2)(1+\frac{3}{4} + (\frac{3}{4})^2+...$
+\\$=2-\frac{3}{1-\frac{3}{4}}$
+\\=14 m
+\\
+\\
+\end{solution} 
+\noindent\rule{7in}{2.8pt}
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{4}
+Determine if series converge or diverges.  State which test were used.
+\begin{align*}
+a)\sum\limits_{n=0}^\infty \frac{n^{100}2^n}{\sqrt{n!}}
+\;\tiny (Section\; 9.3, Q22)
+\end{align*}
+
+\begin{align*} 
+b) \sum\limits_{n=2}^\infty \frac{1}{n^2-ln(n)}
+\;\tiny
+\end{align*}
+\end{problem}
+\begin{solution}
+\\a)Use Ratio Test.
+$\lim_{n\to\infty}  \frac{(n+1)^{100}2^{n+1}}{\sqrt{(n+1)!}}/ \frac{n^{100}2^n}{\sqrt{n!}}
+\\ = 2 \lim_{n\to\infty} (\frac{n+1}{n})^{100} \frac{1}{\sqrt(n+1)} =0 \;$(converges)
+\\
+\\
+b) Use Limit Comparison Test
+\\Series $\sum\limits_{n=2}^\infty \frac{1}{n^2-ln(n)}$ is similar to $\frac{1}{n^2}$
+
+\\$\lim_{n\to\infty} \frac{\frac{1}{n^2-ln(n)}}{\frac{1}{n^2}}$ =$\lim_{n\to\infty} \frac{n^2}{n^2-ln(n)}$ =^{H.R} $\lim_{n\to\infty} \frac{2n}{2n-\frac{1}{n}} =^{H.R} $\lim_{n\to\infty} \frac{2}{2-\frac{1}{n^2}}$
+\\= $\frac{2}{2+\frac{1}{\infty}}$ = $\frac{2}{2+0}$ = 1
+\\Thus, series also converges by LCT.
+
+
+\end{solution} 
+\noindent\rule{7in}{2.8pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{5}
+Use test listed to evaluate convergence of :$\sum\limits_{n=1}^\infty \frac{2^{n+1}}{n^n}$
+\\a) Root Test  ($Section$ 9.3, Q38)          b) Ratio Test ($Section$ 9.3, Q40)
+\\
+
+\end{problem}
+\begin{solution}
+\\a) Root Test
+Let $a_n = 2^{n+1} / n^n$
+\\Then, $\lim_{n\to\infty}  \sqrt[n]{a_n}$ = $\lim_{n\to\infty} \frac{2 \cdot 2^{1/n}}{n} = 0$
+\\Because limit is less than 1, by root test, $\sum\limits_{n=1}^\infty a_n$ converges.
+\\
+\\b) Ratio Test
+Let $a_n = 2^{n+1} / n^n$
+\\$\frac{a_{n+1}}{a_n} = (\frac{2^{n+2}}{(n+1)^{n+1}})(\frac{n^{n}}{2^{n+1}})
+\\=\frac{2}{(n+1)(\frac{n}{n+1})^n}$
+\\=$\frac{1}{n+1} \cdot \frac{1}{(1+\frac{1}{n})^n}
+\\= 0 \cdot \frac{1}{e}  = 0$ as n approaches $\infty$.
+\\So, converges by Ratio Test
+\\
+\end{solution} 
+\noindent\rule{7in}{2.8pt}
+\end{document}
